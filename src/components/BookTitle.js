@@ -1,9 +1,7 @@
 import React from "react";
 
-const BookTitle = props => {
-    return (
-        <div className="book-title">To Kill a Mockingbird</div>
-    )
-}
+const BookTitle = ({ title }) => {
+  return <div className="book-title">{title}</div>;
+};
 
-export default BookTitle
+export default BookTitle;

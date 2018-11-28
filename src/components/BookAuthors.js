@@ -1,9 +1,7 @@
 import React from "react";
 
-const BookAuthors = props => {
-    return (
-        <div className="book-authors">Harper Lee</div>
-    )
-}
+const BookAuthors = ({ authors }) => {
+  return <div className="book-authors">{authors.join(", ")}</div>;
+};
 
-export default BookAuthors
+export default BookAuthors;

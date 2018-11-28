@@ -1,16 +1,16 @@
 import React from "react";
 import Book from "./Book";
 
-const BooksGrid = props => {
-    return (
-        <ol className="books-grid">
-            {/*{props.books.forEach(book => (*/}
-                <li>
-                    <Book/>
-                </li>
-            {/*))}*/}
-        </ol>
-    )
-}
+const BooksGrid = ({ books }) => {
+  return (
+    <ol className="books-grid">
+      {books.map(book => (
+        <li key={book.id}>
+          <Book book={book} />
+        </li>
+      ))}
+    </ol>
+  );
+};
 
-export default BooksGrid
+export default BooksGrid;
