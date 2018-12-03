@@ -1,26 +1,37 @@
-import React from "react";
-import * as BooksAPI from "./BooksAPI";
-import "./App.css";
-import SearchBooks from "./components/SearchBooks";
-import { Route, Link } from "react-router-dom";
-import Bookshelf from "./components/Bookshelf";
+import React from 'react'
+import * as BooksAPI from './BooksAPI'
+import './App.css'
+import SearchBooks from './components/SearchBooks'
+import { Route, Link } from 'react-router-dom'
+import Bookshelf from './components/Bookshelf'
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     books: []
-  };
+  }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      console.log(books);
-      this.setState({ books });
-    });
+      console.log(books)
+      this.setState({ books })
+    })
+  }
+
+  handleShelfChange = (bookId, newShelf) => {
+    this.setState(previousState => ({
+      books: previousState.books.map(book => {
+        if (book.id === bookId) {
+          // set new shelf
+          book.shelf = newShelf
+        }
+        return book
+      })
+    }))
+
+    // use API to update book shelf
+    BooksAPI.update({ id: bookId }, newShelf).then(resp => {
+      console.log(resp)
+    })
   }
 
   render() {
@@ -40,18 +51,21 @@ class BooksApp extends React.Component {
               <Bookshelf
                 title="Currently Reading"
                 books={this.state.books.filter(
-                  book => book.shelf === "currentlyReading"
+                  book => book.shelf === 'currentlyReading'
                 )}
+                shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Want to Read"
                 books={this.state.books.filter(
-                  book => book.shelf === "wantToRead"
+                  book => book.shelf === 'wantToRead'
                 )}
+                shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Read"
-                books={this.state.books.filter(book => book.shelf === "read")}
+                books={this.state.books.filter(book => book.shelf === 'read')}
+                shelfChangeHandler={this.handleShelfChange}
               />
 
               <div className="open-search">
@@ -61,8 +75,8 @@ class BooksApp extends React.Component {
           )}
         />
       </div>
-    );
+    )
   }
 }
 
-export default BooksApp;
+export default BooksApp
