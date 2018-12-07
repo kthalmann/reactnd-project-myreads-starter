@@ -57,23 +57,20 @@ class BooksApp extends React.Component {
               </div>
               <Bookshelf
                 title="Currently Reading"
-                books={this.state.shelvedBooks.filter(
-                  book => book.shelf === 'currentlyReading'
-                )}
+                id="currentlyReading"
+                shelvedBooks={this.state.shelvedBooks}
                 shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Want to Read"
-                books={this.state.shelvedBooks.filter(
-                  book => book.shelf === 'wantToRead'
-                )}
+                id="wantToRead"
+                shelvedBooks={this.state.shelvedBooks}
                 shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Read"
-                books={this.state.shelvedBooks.filter(
-                  book => book.shelf === 'read'
-                )}
+                id="read"
+                shelvedBooks={this.state.shelvedBooks}
                 shelfChangeHandler={this.handleShelfChange}
               />
 
