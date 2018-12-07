@@ -7,19 +7,18 @@ import Bookshelf from './components/Bookshelf'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    shelvedBooks: []
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      console.log(books)
-      this.setState({ books })
+      this.setState({ shelvedBooks: books })
     })
   }
 
   handleShelfChange = (bookId, newShelf) => {
     this.setState(previousState => ({
-      books: previousState.books.map(book => {
+      shelvedBooks: previousState.shelvedBooks.map(book => {
         if (book.id === bookId) {
           // set new shelf
           book.shelf = newShelf
@@ -42,7 +41,7 @@ class BooksApp extends React.Component {
           path="/search"
           render={() => (
             <SearchBooks
-              books={this.state.books}
+              books={this.state.shelvedBooks}
               shelfChangeHandler={this.handleShelfChange}
             />
           )}
@@ -58,21 +57,23 @@ class BooksApp extends React.Component {
               </div>
               <Bookshelf
                 title="Currently Reading"
-                books={this.state.books.filter(
+                books={this.state.shelvedBooks.filter(
                   book => book.shelf === 'currentlyReading'
                 )}
                 shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Want to Read"
-                books={this.state.books.filter(
+                books={this.state.shelvedBooks.filter(
                   book => book.shelf === 'wantToRead'
                 )}
                 shelfChangeHandler={this.handleShelfChange}
               />
               <Bookshelf
                 title="Read"
-                books={this.state.books.filter(book => book.shelf === 'read')}
+                books={this.state.shelvedBooks.filter(
+                  book => book.shelf === 'read'
+                )}
                 shelfChangeHandler={this.handleShelfChange}
               />
 

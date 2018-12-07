@@ -8,7 +8,6 @@ class SearchBooksResult extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps')
     // Store prevId in state so we can compare when props change.
     // Clear out previously-loaded data (so we don't render stale stuff).
     if (props.searchQuery !== state.prevSearchQuery) {
