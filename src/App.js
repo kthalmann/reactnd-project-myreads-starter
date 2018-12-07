@@ -11,25 +11,20 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
-      this.setState({ shelvedBooks: books })
-    })
+    this._fetchShelvedBooks()
   }
 
   handleShelfChange = (bookId, newShelf) => {
-    this.setState(previousState => ({
-      shelvedBooks: previousState.shelvedBooks.map(book => {
-        if (book.id === bookId) {
-          // set new shelf
-          book.shelf = newShelf
-        }
-        return book
-      })
-    }))
-
     // use API to update book shelf
     BooksAPI.update({ id: bookId }, newShelf).then(resp => {
-      console.log(resp)
+      // after update fetch all shelved books again
+      this._fetchShelvedBooks()
+    })
+  }
+
+  _fetchShelvedBooks = _ => {
+    BooksAPI.getAll().then(books => {
+      this.setState({ shelvedBooks: books })
     })
   }
 
