@@ -11,7 +11,13 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          <BookCover url={imageLinks.smallThumbnail} />
+          <BookCover
+            url={
+              imageLinks
+                ? imageLinks.smallThumbnail
+                : 'https://dummyimage.com/128x193/7d7d7d/ffffff.gif&text=No+Image'
+            }
+          />
           <BookshelfChanger
             bookId={id}
             currentShelf={shelf}
