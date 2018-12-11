@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import SearchBooksBar from './SearchBooksBar'
 import SearchBooksResult from './SearchBooksResults'
+import PropTypes from 'prop-types'
 
 class SearchBooks extends Component {
+  static propTypes = {
+    shelvedBooks: PropTypes.array.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired
+  }
+
   state = {
     searchQuery: ''
   }

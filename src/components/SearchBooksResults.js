@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import BooksGrid from './BooksGrid'
 import * as BooksAPI from '../BooksAPI'
+import PropTypes from 'prop-types'
 
 class SearchBooksResult extends Component {
+  static propTypes = {
+    searchQuery: PropTypes.string.isRequired,
+    shelvedBooks: PropTypes.array.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired
+  }
+
   state = {
     bookResults: null
   }

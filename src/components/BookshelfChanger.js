@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class BookshelfChanger extends Component {
+  static propTypes = {
+    currentShelf: PropTypes.string,
+    shelfChangeHandler: PropTypes.func.isRequired,
+    bookId: PropTypes.string.isRequired
+  }
+
   state = {
     currentShelf: this.props.currentShelf || 'none'
   }
