@@ -47,8 +47,19 @@ class SearchBooksResult extends Component {
       if (searchResult.error) {
         searchResult = []
       }
+
+      const mergedResult = searchResult.map(book => {
+        // search for book in shelvedBooks
+        const shelvedBook = this.props.shelvedBooks.find(
+          shelvedBook => shelvedBook.id === book.id
+        )
+
+        // if book was found in shelvedBooks prop return book object from there with shelf information
+        return shelvedBook ? shelvedBook : book
+      })
+
       this.setState(previousState => ({
-        bookResults: searchResult
+        bookResults: mergedResult
       }))
     })
   }

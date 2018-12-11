@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SearchBooksBar from './SearchBooksBar'
 import SearchBooksResult from './SearchBooksResults'
-import * as BooksAPI from '../BooksAPI'
 
 class SearchBooks extends Component {
   state = {
@@ -15,7 +14,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { books, shelfChangeHandler } = this.props
+    const { shelvedBooks, shelfChangeHandler } = this.props
 
     return (
       <div className="search-books">
@@ -25,6 +24,7 @@ class SearchBooks extends Component {
         />
         <SearchBooksResult
           searchQuery={this.state.searchQuery}
+          shelvedBooks={shelvedBooks}
           shelfChangeHandler={shelfChangeHandler}
         />
       </div>
