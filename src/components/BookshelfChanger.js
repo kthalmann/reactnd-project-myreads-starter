@@ -15,6 +15,7 @@ class BookshelfChanger extends Component {
   onChange = newShelf => {
     const { shelfChangeHandler, bookId } = this.props
 
+    // trigger handler on App Component to update book with new shelf via API
     shelfChangeHandler(bookId, newShelf)
 
     this.setState(previousState => ({

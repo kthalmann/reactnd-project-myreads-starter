@@ -44,11 +44,17 @@ class SearchBooksResult extends Component {
     }
   }
 
+  /**
+   * Load search results by query, add shelf information to books, update state
+   *
+   * @param searchQuery
+   * @returns {Array}
+   * @private
+   */
   _loadSearchResults = searchQuery => {
     if (searchQuery === '') return []
 
     this._asyncRequest = BooksAPI.search(searchQuery).then(searchResult => {
-      console.log(searchResult)
       this._asyncRequest = null
 
       if (searchResult.error) {

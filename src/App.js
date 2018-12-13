@@ -14,14 +14,22 @@ class BooksApp extends React.Component {
     this._fetchShelvedBooks()
   }
 
+  /**
+   * Use API to update book shelf
+   *
+   * @param bookId
+   * @param newShelf
+   */
   handleShelfChange = (bookId, newShelf) => {
-    // use API to update book shelf
     BooksAPI.update({ id: bookId }, newShelf).then(resp => {
       // after update fetch all shelved books again
       this._fetchShelvedBooks()
     })
   }
 
+  /**
+   * Load shelved books from API, set state
+   */
   _fetchShelvedBooks = _ => {
     BooksAPI.getAll().then(books => {
       this.setState({ shelvedBooks: books })
