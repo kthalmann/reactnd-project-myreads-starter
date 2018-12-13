@@ -3,8 +3,14 @@ import BookCover from './BookCover'
 import BookshelfChanger from './BookshelfChanger'
 import BookTitle from './BookTitle'
 import BookAuthors from './BookAuthors'
+import PropTypes from 'prop-types'
 
 class Book extends Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    shelfChangeHandler: PropTypes.func.isRequired
+  }
+
   render() {
     const { id, title, authors, imageLinks, shelf } = this.props.book
 
